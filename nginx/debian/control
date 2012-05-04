@@ -1,0 +1,11 @@
+Source: nginx-compiled
+Section: unknown
+Priority: extra
+Maintainer: Lemr <lemrovo@lemrovo.cz>
+Build-Depends: debhelper (>= 7), libpcre3-dev, libcurl4-openssl-dev
+Standards-Version: 3.7.3
+
+Package: nginx-compiled
+Architecture: any
+Depends:
+Description: NGINX server compilation package, originally created for Falanxia a.s. http://www.falanxia.com

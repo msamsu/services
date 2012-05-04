@@ -1,0 +1,75 @@
+#! /bin/sh
+
+# Description: Startup script for nginx webserver on Debian. Place in /etc/init.d and
+# run 'sudo update-rc.d nginx defaults', or use the appropriate command on your
+# distro.
+#
+# Author:	Ryan Norbauer <ryan.norbauer@gmail.com>
+# Modified:     Geoffrey Grosenbach http://topfunky.com
+#		        Lemr <lemrovo@lemrovo.cz>
+
+set -e
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DESC="nginx daemon"
+
+NGINX_DAEMON=/var/www/nginx-compiled/bin/nginx
+NGINX_CONF=/var/www/nginx-compiled/conf/nginx.conf
+# Configuration directive "pid" in config file should be disabled (off-commented).
+# Otherwise daemon start falls on "directive is duplicate" error.
+NGINX_PID=/var/run/nginx-compiled.pid
+
+# Gracefully exit if the package has been removed.
+test -x $NGINX_DAEMON || exit 0
+
+d_start() {
+  if [ -f $NGINX_PID ]; then
+  	echo "nginx is already running"
+  else
+  	$NGINX_DAEMON -c $NGINX_CONF -g "pid $NGINX_PID;" || echo "cannot start nginx (maybe is already running)"
+  fi
+}
+
+d_stop() {
+  kill -QUIT `cat $NGINX_PID` || echo "cannot close nginx (maybe is not running)"
+  sleep 2
+  if [ -f $NGINX_PID ]; then
+	kill -KILL `cat $NGINX_PID` || echo "cannot kill nginx!!! (maybe is not running)"
+	rm -f $NGINX_PID
+  fi
+}
+
+d_reload() {
+  kill -HUP `cat $NGINX_PID` || echo "can't reload nginx"
+}
+
+case "$1" in
+  start)
+  	echo -n "Starting $DESC..."
+  	d_start
+  	echo " Done"
+	;;
+  stop)
+  	echo -n "Stopping $DESC..."
+  	d_stop
+  	echo " Done"
+	;;
+  reload)
+  	echo -n "Reloading $DESC configuration..."
+  	d_reload
+  	echo " Done"
+	;;
+  restart)
+  	echo -n "Restarting $DESC..."
+  	d_stop
+  	sleep 1
+  	d_start
+  	echo " Done"
+	;;
+  *)
+	echo "Usage: $0 {start|stop|reload|restart}" >&2
+	exit 3
+	;;
+esac
+
+exit 0

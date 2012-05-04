@@ -1,0 +1,3 @@
+build/bin/* var/www/nginx-compiled/bin/
+build/conf/* var/www/nginx-compiled/conf/
+build/etc/nginx-compiled etc/init.d/

@@ -1,0 +1,4 @@
+build/bin/* var/www/uwsgi-compiled/bin/
+build/conf/* var/www/uwsgi-compiled/conf/
+build/default/* var/www/uwsgi-compiled/default/
+build/etc/uwsgi-compiled etc/init.d/

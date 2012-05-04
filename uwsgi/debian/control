@@ -1,0 +1,11 @@
+Source: uwsgi-compiled
+Section: unknown
+Priority: extra
+Maintainer: Lemr <lemrovo@lemrovo.cz>
+Build-Depends: debhelper (>= 7), libxml2-dev, python-dev
+Standards-Version: 3.7.3
+
+Package: uwsgi-compiled
+Architecture: any
+Depends:
+Description: UWSGI service compilation package, originally created for Falanxia a.s. http://www.falanxia.com

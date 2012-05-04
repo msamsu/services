@@ -1,0 +1,4 @@
+var/www/nginx-compiled/bin
+var/www/nginx-compiled/conf
+var/www/nginx-compiled/log
+var/www/nginx-compiled/temp

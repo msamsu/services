@@ -1,0 +1,5 @@
+var/www/uwsgi-compiled/bin
+var/www/uwsgi-compiled/conf
+var/www/uwsgi-compiled/log
+var/www/uwsgi-compiled/default
+

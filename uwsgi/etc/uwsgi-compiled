@@ -1,0 +1,65 @@
+#! /bin/sh
+
+set -e
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DESC="uwsgi daemon"
+
+UWSGI_DAEMON=/var/www/uwsgi/bin/uwsgi
+UWSGI_CONF=/var/www/uwsgi/conf/uwsgi.ini
+UWSGI_PID=/var/run/uwsgi-compiled.pid
+
+# Gracefully exit if the package has been removed.
+test -x $UWSGI_DAEMON || exit 0
+
+d_start() {
+  if [ -f $UWSGI_PID ]; then
+  	echo "uwsgi is already running"
+  else
+  	$UWSGI_DAEMON --ini $UWSGI_CONF --pidfile $UWSGI_PID || echo "cannot start uwsgi (maybe is already running)"
+  fi
+}
+
+d_stop() {
+  kill -QUIT `cat $UWSGI_PID` || echo "cannot close uwsgi (maybe is not running)"
+  sleep 2
+  if [ -f $UWSGI_PID ]; then
+	kill -KILL `cat $UWSGI_PID` || echo "cannot kill uwsgi!!! (maybe is not running)"
+	rm -f $UWSGI_PID
+  fi
+}
+
+d_reload() {
+  kill -HUP `cat $UWSGI_PID` || echo "can't reload uwsgi"
+}
+
+case "$1" in
+  start)
+  	echo -n "Starting $DESC..."
+  	d_start
+  	echo " Done"
+	;;
+  stop)
+  	echo -n "Stopping $DESC..."
+  	d_stop
+  	echo " Done"
+	;;
+  reload)
+  	echo -n "Reloading $DESC configuration..."
+  	d_reload
+  	echo " Done"
+	;;
+  restart)
+  	echo -n "Restarting $DESC..."
+  	d_stop
+  	sleep 1
+  	d_start
+  	echo " Done"
+	;;
+  *)
+	echo "Usage: $0 {start|stop|reload|restart}" >&2
+	exit 3
+	;;
+esac
+
+exit 0
