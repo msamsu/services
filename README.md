@@ -1,14 +1,16 @@
 Linux web services .deb package sources
 =======================================
 
-[Nginx][nglink]
-[nglink]: http://wiki.nginx.org/Main
-[uWsig][uwlink]
-[uwlink]: http://projects.unbit.it/uwsgi/
+
+Includes
+--------
+
+[Nginx][http://wiki.nginx.org/Main]
+[uWsig][http://projects.unbit.it/uwsgi/]
 
 
-.deb packages sources do
-------------------------
+Does
+----
 
 * downloads source
 * compiles it
