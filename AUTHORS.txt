@@ -1,0 +1,4 @@
+Authors
+
+lemr <lemrovo@lemrovo.cz> <https://github.com/lemr>
+Jiri Stepanek <stepi@falanxia.com> <http://falanxia.com>

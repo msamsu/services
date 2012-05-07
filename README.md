@@ -1,20 +1,19 @@
 Linux web services .deb package sources
+=======================================
 
-Nginx 
+ * Nginx
 http://wiki.nginx.org/Main
 
-uWsig
+ * uWsig
 http://projects.unbit.it/uwsgi/
 
 
-Because of old or none repository versions in Debian/Ubuntu.
+.deb packages sources do:
 
-
-.deb packages sources:
- - downloads source
- - compiles it
- - creates .deb package
- - and eventually installs it
+ * downloads source
+ * compiles it
+ * creates .deb package
+ * and eventually installs it
 
 
 Installs all to /var/www/(nginx|uwsgi)-compiled
@@ -24,18 +23,22 @@ Configuration can be found in /var/www/(nginx|uwsgi)-compiled/conf
 
 To only create the package run:
 
+```bash
 git clone git@github.com:lemr/services.git
 cd services
 cd nginx
 make pkgbuild && make pgkclean
+```
 
 
 Eventually to create and install the package run:
 
+```bash
 git clone git@github.com:lemr/services.git
 cd services
 cd nginx
 make pkginst && make pgkclean
+```
 
 
 Please send me any missing dependencies.
