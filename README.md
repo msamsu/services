@@ -27,7 +27,7 @@ Usage
 To only create the package run:
 
 ```bash
-git clone git@github.com:lemr/services.git
+git clone https://github.com/lemr/services.git
 cd services
 cd nginx
 make pkgbuild && make pgkclean
@@ -37,7 +37,7 @@ make pkgbuild && make pgkclean
 Eventually to create and install the package run:
 
 ```bash
-git clone git@github.com:lemr/services.git
+git clone https://github.com/lemr/services.git
 cd services
 cd nginx
 make pkginst && make pgkclean
