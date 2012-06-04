@@ -24,8 +24,22 @@ Does
 Requirements
 ------------
 
+For creating .deb packages you'll need:
+
 ```bash
-apt-get install dpkg-dev debhelper libpcre3-dev libcurl4-openssl-dev
+apt-get install dpkg-dev debhelper
+```
+
+For nginx compilation you'll need:
+
+```bash
+apt-get install libpcre3-dev libcurl4-openssl-dev
+```
+
+For uwsgi compilation you'll need:
+
+```bash
+apt-get install libxml2-dev python-dev
 ```
 
 
@@ -38,7 +52,7 @@ To only create the package run:
 git clone https://github.com/lemr/services.git
 cd services
 cd nginx
-make pkgbuild && make pgkclean
+make pkgbuild && make pkgclean
 ```
 
 
@@ -48,7 +62,7 @@ Eventually to create and install the package run:
 git clone https://github.com/lemr/services.git
 cd services
 cd nginx
-make pkginst && make pgkclean
+make pkginst && make pkgclean
 ```
 
 
@@ -56,7 +70,7 @@ Notes
 -----
 
 * Installs all to /var/www/(nginx|uwsgi)-compiled
-* Only creates init scripts to /etc/init.d/ but does NOT add them to rc.d by default
+* Only creates init scripts to /etc/init.d/ but does NOT add them to rc.d and does not start them by default
 * Configuration can be found in /var/www/(nginx|uwsgi)-compiled/conf
 
 

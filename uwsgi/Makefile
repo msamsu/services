@@ -5,7 +5,7 @@ PKGVER=`head -n 1 debian/changelog |grep -oE "[0-9.]+"`
 
 INSTALL_DIR='/var/www/uwsgi-compiled'
 
-UWSGI_VERSION='0.9.6.5'
+UWSGI_VERSION='1.2.3'
 
 
 all:
