@@ -21,6 +21,14 @@ Does
 * and eventually installs it
 
 
+Requirements
+------------
+
+```bash
+apt-get install dpkg-dev debhelper libpcre3-dev libcurl4-openssl-dev
+```
+
+
 Usage
 -----
 
